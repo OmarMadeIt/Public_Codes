@@ -29,6 +29,13 @@ def explore(df):
     output_globale = df.groupby(['Motif', 'Type_Offre']).Statut.count().reset_index()
     st.write('Summary:')
     st.write(output_globale)
+    final=output_globale.to_csv(sep=';', encoding='utf-8-sig', index=False)
+    st.download_button(
+    "Press to Download",
+    final,
+    "file.csv",
+    "text/csv",
+    key='download-csv')
 
 def get_df(file):
     # get extension and read file
