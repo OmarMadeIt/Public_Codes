@@ -23,10 +23,10 @@ def explore(df):
     # SUMMARY
 #     output_globale = df.describe()
     df.columns = [c.replace(' ', '_') for c in df.columns]
-    df['Date_Appel_Mois'] = df['Créé_le'].dt.to_period('M')
+    #df['Date_Appel_Mois'] = df['Créé_le'].dt.to_period('M')
     df['Motif']=df['Motif'].str.lower()
     df['Motif']=df["Motif"].str.rsplit("-", 1).str[-1]
-    output_globale = df.groupby(['Date_Appel_Mois', 'Motif', 'Type_Offre']).Statut.count().reset_index()
+    output_globale = df.groupby(['Motif', 'Type_Offre']).Statut.count().reset_index()
     st.write('Summary:')
     st.write(output_globale)
 
